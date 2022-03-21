@@ -4,11 +4,10 @@ import L from 'leaflet';
 
 import { promiseToFlyTo, geoJsonToMarkers, clearMapLayers } from 'lib/map';
 import { trackerLocationsToGeoJson, trackerFeatureToHtmlMarker } from 'lib/coronavirus';
-import { commafy, friendlyDate } from 'lib/util';
+import { commafy } from 'lib/util';
 import { useCoronavirusTracker } from 'hooks';
 
 import Layout from 'components/Layout';
-import Container from 'components/Container';
 import Map from 'components/Map';
 
 const LOCATION = {
@@ -122,7 +121,7 @@ const IndexPage = () => {
             <li className="tracker-stat">
               <p className="tracker-stat-primary">
                 { stats ? commafy( stats?.deaths ) : '-' }
-                <strong>Total Deaths</strong>
+                <strong>Incidents</strong>
               </p>
               <p className="tracker-stat-secondary">
                 { stats ? commafy( stats?.deathsPerOneMillion ) : '-' }
@@ -149,44 +148,7 @@ const IndexPage = () => {
             </li>
           </ul>
         </div>
-
-        <div className="tracker-last-updated">
-          <p>Last Updated: { stats ? friendlyDate( stats?.updated ) : '-' }</p>
-        </div>
       </div>
-
-      <Container type="content" className="text-center home-start">
-        <h2>Demo Mapping App with Gatsby and React Leaflet</h2>
-        <ul>
-          <li>
-            Uses{ ' ' }
-            <a href="https://github.com/ExpDev07/coronavirus-tracker-api">
-              github.com/ExpDev07/coronavirus-tracker-api
-            </a>{ ' ' }
-            via <a href="https://coronavirus-tracker-api.herokuapp.com/">coronavirus-tracker-api.herokuapp.com</a>
-          </li>
-          <li>
-            Which uses jhu - <a href="https://github.com/CSSEGISandData/COVID-19">github.com/CSSEGISandData/COVID-19</a>{ ' ' }
-            - Worldwide Data repository operated by the Johns Hopkins University Center for Systems Science and
-            Engineering (JHU CSSE).
-          </li>
-          <li>
-            And csbs -{ ' ' }
-            <a href="https://www.csbs.org/information-covid-19-coronavirus">
-              csbs.org/information-covid-19-coronavirus
-            </a>{ ' ' }
-            - U.S. County data that comes from the Conference of State Bank Supervisors.
-          </li>
-        </ul>
-
-        <h2>Want to build your own map?</h2>
-        <p>
-          Check out{ ' ' }
-          <a href="https://github.com/colbyfayock/gatsby-starter-leaflet">
-            github.com/colbyfayock/gatsby-starter-leaflet
-          </a>
-        </p>
-      </Container>
     </Layout>
   );
 };
